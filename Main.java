@@ -4,7 +4,6 @@ import model.User;
 import model.plans;
 import view.*;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 import static controller.User_methods.addUser;
@@ -129,10 +128,20 @@ public class Main
                         if (op == 1)
                         {
                             Bill bill = new Bill();
+                            if(bill.isSubAlive(userData.P_NO))
+                            {
+                                System.out.println("");
+                                plans pl=bill.subcribeDetails(userData.P_NO);
+                                System.out.println("Hey "+userData.NAME+" Currently you have been already an active subscription");
+                                System.out.println("PLAN DETAILS : "+pl.planDetails);
+                                System.out.println("PLAN SPEED : "+pl.speed);
+                                break;
+                            }
                             bill.generate_bill(plan.get(0), userData.P_NO);
                             System.out.println("Please type CONFIRM to pay");
                             String payment = sc.nextLine();
-                            if (payment.equals("CONFIRM") || payment.equals("confirm")) {
+                            if (payment.equals("CONFIRM") || payment.equals("confirm"))
+                            {
                                 bill.pay(plan.get(0), userData.P_NO);
                                 System.out.println("PAID SUCCUESSFULLY!");
                                 break;
@@ -141,6 +150,15 @@ public class Main
                         else if (op == 2)
                         {
                             Bill bill = new Bill();
+                            if(bill.isSubAlive(userData.P_NO))
+                            {
+                                System.out.println("");
+                                plans pl=bill.subcribeDetails(userData.P_NO);
+                                System.out.println("Hey "+userData.NAME+" Currently you have been already an active subscription");
+                                System.out.println("PLAN DETAILS : "+pl.planDetails);
+                                System.out.println("PLAN SPEED : "+pl.speed);
+                                break;
+                            }
                             bill.generate_bill(plan.get(1), userData.P_NO);
                             System.out.println("Please type CONFIRM to pay");
                             String payment = sc.nextLine();
@@ -178,12 +196,10 @@ public class Main
                             System.out.println("PLEASE CHOOSE THE CORRECT OPTION!");
                         }
                     }
-                    else if (x1 == 2)
-                    {
+                    else if (x1 == 2) {
                         System.out.println("Settings");
                     }
-                    else if (x1 == 3)
-                    {
+                    else if (x1 == 3) {
                         flagLogin = 0;
                         System.out.println(userData.NAME + " is Logged out!");
                         userData = null;

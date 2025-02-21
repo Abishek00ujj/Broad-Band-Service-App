@@ -5,6 +5,7 @@ import model.plans;
 import controller.User_methods;
 import static controller.User_methods.addUser;
 
+import java.sql.SQLOutput;
 import java.util.Date;
 
 import java.util.LinkedHashMap;
@@ -42,23 +43,18 @@ public class Bill {
     {
         return CurrentSubscription.get(phoneno);
     }
-//    public void view_subscription(String id)
-//    {
-//        for(Map.Entry<plans,String> e: bill.entrySet())
-//        {
-//            if(e.getValue().equals(id)) {
-//                plans p = e.getKey();
-//                System.out.println();
-//                System.out.println(p.planDetails);
-//                System.out.println("GET USER DETAILS!");
-//                System.out.println("ENTER THE PHONE NUMBER");
-//                String phonon = id;
-//                if (userMethods.isUser(phonon)) {
-//                    user = userMethods.getUser(phonon);
-//                    System.out.println(user.NAME);
-//                    System.out.println(user.P_NO);
-//                }
-//            }
-//
-//    }
+    public void view_subscription(String phoneno)
+    {
+        plans pl=CurrentSubscription.get(phoneno);
+        User_methods userMethods=new User_methods();
+        User user=userMethods.getUser(phoneno);
+        System.out.println("SUBSCRIPTION  DETAILS!");
+        System.out.println(user.NAME);
+        System.out.println(user.EMAIL);
+        System.out.println(pl.planId);
+        System.out.println(pl.planDetails);
+        System.out.println(pl.cost);
+        System.out.println(pl.speed);
+    }
+
 }
