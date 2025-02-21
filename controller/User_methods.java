@@ -1,11 +1,35 @@
 package controller;
 import model.User;
+
+import java.util.LinkedHashMap;
+
 public class User_methods
 {
-    public boolean add_User(String name,String pno,String email)
+    static LinkedHashMap<String,User> storage=new LinkedHashMap<>();
+    public static boolean addUser(User user)
     {
-        User user=new User(name,pno,email);
-        
+        storage.put(user.P_NO,user);
+        return true;
+    }
+
+    public User getUser(String id)
+    {
+        return storage.get(id);
+    }
+
+    public boolean isUser(String id)
+    {
+        return storage.containsKey(id);
+    }
+
+    public boolean login(String phoneno,String password)
+    {
+        User user=getUser(phoneno);
+
+        if(password.equals(user.PASSWORD))
+        {
+            return true;
+        }
         return false;
     }
 }
