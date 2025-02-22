@@ -23,12 +23,11 @@ public class Main
             {
                 vi = new introview();
                 System.out.println("ENTER THE OPTION:");
-                int x = sc.nextInt();
+                int x = Integer.parseInt(sc.nextLine());
                 if (x == 0)
                 {
                     break;
                 }
-                sc.nextLine();
                 if (x == 1)
                 {
                     System.out.println("-------------------REGISTER-------------------");
@@ -59,23 +58,6 @@ public class Main
                         System.out.println("PASSWORDS NOT MATCHED");
                     }
                 }
-//                else if (x == 2)
-//                {
-//                    System.out.println("GET USER DETAILS!");
-//                    System.out.println("ENTER THE PHONE NUMBER");
-//                    String phonon = sc.nextLine();
-//                    User user;
-//                    if (userMethods.isUser(phonon))
-//                    {
-//                        user = userMethods.getUser(phonon);
-//                        System.out.println(user.NAME);
-//                        System.out.println(user.P_NO);
-//                    }
-//                    else
-//                    {
-//                        System.out.println("NOT FOUND!");
-//                    }
-//                }
                 else if (x == 2)
                 {
                     System.out.println("------------------------LOGIN-----------------------------");
@@ -110,8 +92,7 @@ public class Main
                 while (true)
                 {
                     System.out.println("ENTER THE OPTION:");
-                    int x1 = sc.nextInt();
-                    sc.nextLine();
+                    int x1 = Integer.parseInt(sc.nextLine());
                     if (x1 == 1)
                     {
                         introview.plansViwe();
@@ -120,90 +101,98 @@ public class Main
                         plan.add(new plans("p2", "gold", "450", "20mb/s"));
                         plan.add(new plans("p3", "diamond", "1000", "100mb/s"));
 
+//                        for(plans p:plan) {
+//                            System.out.println(p.planDetails);
+//                        }
+
                         System.out.println("ENTER YOUR OPTION:");
 
-                        int op = sc.nextInt();
-                        sc.nextLine();
-
-                        if (op == 1)
+                        int op = Integer.parseInt(sc.nextLine());
+                        if(op<1 || op>plan.size()-1)
                         {
+                            System.out.println("INVALID OPTION!");
+                            break;
+                        }
+                        else {
                             Bill bill = new Bill();
-                            if(bill.isSubAlive(userData.P_NO))
-                            {
+                            if (bill.isSubAlive(userData.P_NO)) {
                                 System.out.println("");
-                                plans pl=bill.subcribeDetails(userData.P_NO);
-                                System.out.println("Hey "+userData.NAME+" Currently you have been already an active subscription");
-                                System.out.println("PLAN DETAILS : "+pl.planDetails);
-                                System.out.println("PLAN SPEED : "+pl.speed);
+                                plans pl = bill.subcribeDetails(userData.P_NO);
+                                System.out.println("Hey " + userData.NAME + " Currently you have been already an active subscription");
+                                System.out.println("PLAN DETAILS : " + pl.planDetails);
+                                System.out.println("PLAN SPEED : " + pl.speed);
                                 break;
                             }
-                            bill.generate_bill(plan.get(0), userData.P_NO);
+                            bill.generate_bill(plan.get(op-1), userData.P_NO);
                             System.out.println("Please type CONFIRM to pay");
                             String payment = sc.nextLine();
-                            if (payment.equals("CONFIRM") || payment.equals("confirm"))
-                            {
-                                bill.pay(plan.get(0), userData.P_NO);
+                            if (payment.equals("CONFIRM") || payment.equals("confirm")) {
+                                bill.pay(plan.get(op-1), userData.P_NO);
                                 System.out.println("PAID SUCCUESSFULLY!");
                                 break;
-                            }
-                        }
-                        else if (op == 2)
-                        {
-                            Bill bill = new Bill();
-                            if(bill.isSubAlive(userData.P_NO))
-                            {
-                                System.out.println("");
-                                plans pl=bill.subcribeDetails(userData.P_NO);
-                                System.out.println("Hey "+userData.NAME+" Currently you have been already an active subscription");
-                                System.out.println("PLAN DETAILS : "+pl.planDetails);
-                                System.out.println("PLAN SPEED : "+pl.speed);
+                            } else {
+                                System.out.println("PLEASE TRY AGAIN LATER!");
                                 break;
                             }
-                            bill.generate_bill(plan.get(1), userData.P_NO);
-                            System.out.println("Please type CONFIRM to pay");
-                            String payment = sc.nextLine();
-                            if (payment.equals("CONFIRM") || payment.equals("confirm"))
-                            {
-                                bill.pay(plan.get(1), userData.P_NO);
-                                System.out.println("PAID SUCCUESSFULLY!");
-                                break;
-                            }
-                        }
-                        else if (op == 3)
-                        {
-                            Bill bill = new Bill();
-                            if(bill.isSubAlive(userData.P_NO))
-                            {
-                                System.out.println("");
-                                plans pl=bill.subcribeDetails(userData.P_NO);
-                                System.out.println("Hey "+userData.NAME+" Currently you have been already an active subscription");
-                                System.out.println("PLAN DETAILS : "+pl.planDetails);
-                                System.out.println("PLAN SPEED : "+pl.speed);
-                                break;
-                            }
-                            bill.generate_bill(plan.get(2), userData.P_NO);
-                            System.out.println("Please type CONFIRM to pay");
-                            String payment = sc.nextLine();
-                            if (payment.equals("CONFIRM") || payment.equals("confirm"))
-                            {
-                                bill.pay(plan.get(2), userData.P_NO);
-                                System.out.println("PAID SUCCUESSFULLY!");
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            System.out.println("PLEASE CHOOSE THE CORRECT OPTION!");
                         }
                     }
-                    else if (x1 == 2) {
+                    else if (x1 == 2)
+                    {
                         System.out.println("Settings");
+                        System.out.println("Press 1 to view current subscription");
+                        System.out.println("Press 2 to view the recent bill");
+                        System.out.println("Press 0 to exit");
+                        int q=sc.nextInt();
+                        sc.nextLine();
+                        if(q==1)
+                        {
+
+                            Bill bill = new Bill();
+                            if(bill.isSubAlive(userData.P_NO)) {
+                                bill.view_subscription(userData.P_NO);
+                            }
+                            else {
+                                System.out.println("you don't have any subscriptions yet!");
+                                System.out.println("Go back to home and subscribe!");
+                                break;
+                            }
+                        }
+                        else if(q==2)
+                        {
+                            Bill bill=new Bill();
+                            if(bill.isSubAlive(userData.P_NO)) {
+                                bill.viewbill(userData.P_NO);
+                            }
+                            else {
+                                System.out.println("you don't have any subscriptions yet!");
+                                System.out.println("Go back to home and subscribe!");
+                                break;
+                            }
+                        }
+                        else {
+                            break;
+                        }
                     }
-                    else if (x1 == 3) {
+                    else if (x1 == 3)
+                    {
                         flagLogin = 0;
                         System.out.println(userData.NAME + " is Logged out!");
                         userData = null;
                         break;
+                    }
+                    else if(x1==4)
+                    {
+                        System.out.println("FEEDBACK----------------");
+                        System.out.println("ENTER YOUR FEEDBACKS: ");
+                        String feedback=sc.nextLine();
+                        if(!feedback.isEmpty())
+                        {
+                            System.out.println("THANKS FOR YOUR FEEDBACK!");
+                        }
+                        else {
+                            System.out.println("SOME TECHNICAL ERROR! PLEASE TRY AGAIN LATER!");
+                            break;
+                        }
                     }
                 }
             }

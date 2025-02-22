@@ -2,10 +2,10 @@ package model;
 
 public class plans {
 
-    public String planId;
-    public String planDetails;
-    public String cost;
-    public String speed;
+    public  String planId;
+    public  String planDetails;
+    public  String cost;
+    public  String speed;
 
 
     public plans(String planId, String planDetails, String cost, String speed) {

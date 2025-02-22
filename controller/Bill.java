@@ -20,11 +20,11 @@ public class Bill {
     public void generate_bill(plans plans,String phoneno)
     {
         System.out.println("--------------------BILL--------------------");
-        System.out.println("bill no: "+Math.random()%10*10);
-        System.out.println(new Date().getTime());
+        System.out.println("bill no: "+Math.random()%10);
+        System.out.println("DATE : "+new Date());
         System.out.println("Thank you for choosing us.");
         System.out.println("you have choosed "+plans.speed);
-        System.out.println(plans.planDetails);
+        System.out.println("OPTED PLAN NAME : "+plans.planDetails);
         System.out.println("Total cost: "+plans.cost);
     }
     public boolean pay(plans plans,String phoneno)
@@ -49,12 +49,23 @@ public class Bill {
         User_methods userMethods=new User_methods();
         User user=userMethods.getUser(phoneno);
         System.out.println("SUBSCRIPTION  DETAILS!");
-        System.out.println(user.NAME);
-        System.out.println(user.EMAIL);
-        System.out.println(pl.planId);
-        System.out.println(pl.planDetails);
-        System.out.println(pl.cost);
-        System.out.println(pl.speed);
+        System.out.println("USER NAME : "+user.NAME);
+        System.out.println("EMAIL : "+user.EMAIL);
+        System.out.println("PLAN ID : "+pl.planId);
+        System.out.println("PLAN DETAILS : "+pl.planDetails);
+        System.out.println("PLAN COST : "+pl.cost);
+        System.out.println("INTERNET SPEED : "+pl.speed);
     }
 
+    public void viewbill(String id)
+    {
+        plans pl=CurrentSubscription.get(id);
+        System.out.println("--------------------BILL--------------------");
+        System.out.println("bill no: "+Math.random()/10*100+56);
+        System.out.println(new Date());
+        System.out.println("Thank you for choosing us.");
+        System.out.println("you have choosed "+pl.speed);
+        System.out.println("OPTED PLAN NAME : "+pl.planDetails);
+        System.out.println("Total cost: "+pl.cost);
+    }
 }

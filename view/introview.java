@@ -35,6 +35,8 @@ public class introview {
         System.out.println("|-----------------------------|");
         System.out.println("|    LOGOUT         |    3    |");
         System.out.println("|-----------------------------|");
+        System.out.println("|   FEEDBACK        |    4    |");
+        System.out.println("|-----------------------------|");
     }
 
     public static void aboutus()
@@ -58,6 +60,21 @@ public class introview {
         System.out.println("|---------------------------------|");
         System.out.println("|    100MB/S | 1000     |    3    |");
         System.out.println("|---------------------------------|");
+    }
+
+    public static void settings_view()
+    {
+//        System.out.println("Press 1 to view current subscription");
+//        System.out.println("Press 2 to view the recent bill");
+//        System.out.println("Press 0 to exit");
+        System.out.println(" ----------------------------------- ");
+        System.out.println("|         MENU            |  OPTIONS|");
+        System.out.println("|-----------------------------------|");
+        System.out.println("|    current subscription |    1    |");
+        System.out.println("|-----------------------------------|");
+        System.out.println("|    view the recent bill |    2    |");
+        System.out.println("|-----------------------------------|");
+
     }
 
 }
