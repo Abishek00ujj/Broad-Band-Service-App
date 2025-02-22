@@ -108,7 +108,7 @@ public class Main
                         System.out.println("ENTER YOUR OPTION:");
 
                         int op = Integer.parseInt(sc.nextLine());
-                        if(op<1 || op>plan.size()-1)
+                        if(op<1 || op>plan.size())
                         {
                             System.out.println("INVALID OPTION!");
                             break;
