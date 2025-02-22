@@ -32,4 +32,27 @@ public class User_methods
         }
         return false;
     }
+
+
+    public boolean edit_name(User user,String newName)
+    {
+        user.NAME=newName;
+        storage.put(user.P_NO,user);
+        return true;
+    }
+
+    public boolean edit_password(User user,String newPassword)
+    {
+        user.PASSWORD=newPassword;
+        storage.put(user.P_NO,user);
+        return true;
+    }
+
+
+    public boolean edit_email(User user,String newEmail)
+    {
+        user.EMAIL=newEmail;
+        storage.put(user.P_NO, user);
+        return true;
+    }
 }

@@ -139,9 +139,8 @@ public class Main
                     else if (x1 == 2)
                     {
                         System.out.println("Settings");
-                        System.out.println("Press 1 to view current subscription");
-                        System.out.println("Press 2 to view the recent bill");
-                        System.out.println("Press 0 to exit");
+
+                        introview.settings_view();
                         int q=sc.nextInt();
                         sc.nextLine();
                         if(q==1)
@@ -189,7 +188,8 @@ public class Main
                         {
                             System.out.println("THANKS FOR YOUR FEEDBACK!");
                         }
-                        else {
+                        else
+                        {
                             System.out.println("SOME TECHNICAL ERROR! PLEASE TRY AGAIN LATER!");
                             break;
                         }
